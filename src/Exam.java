@@ -5,7 +5,6 @@ public abstract class Exam{
     abstract void addQuestion(Question question);
 }
 
-
 class Question extends Exam{
     String description;
     public Question(String desc) {
