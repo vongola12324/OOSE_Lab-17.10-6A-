@@ -1,8 +1,8 @@
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 public abstract class Exam{
     abstract void doQuestion();
+    abstract void addQuestion(Question question);
 }
 
 
@@ -12,12 +12,17 @@ class Question extends Exam{
         this.description = desc;
     }
     public void print() {
-        System.out.println(description);
+        System.out.println(this.description);
     }
 
     @Override
     void doQuestion() {
         print();
+    }
+
+    @Override
+    void addQuestion(Question question) {
+        // do nothing
     }
 }
 
@@ -25,7 +30,7 @@ class TestPaper extends Exam{
     ArrayList<Exam> list;
 
     public TestPaper(){
-        list = new ArrayList<Exam>();
+        list = new ArrayList<>();
     }
 
     public void addQuestion(Question q){
@@ -34,11 +39,11 @@ class TestPaper extends Exam{
 
     @Override
     void doQuestion() {
-        ListIterator<Exam> iterator = list.listIterator();
-        while(iterator.hasNext()){
-            Exam x = iterator.next();
-            x.doQuestion();
-        }
-        //list.forEach(Exam::doQuestion);
+        //ListIterator<Exam> iterator = list.listIterator();
+        //while(iterator.hasNext()){
+        //    Exam x = iterator.next();
+        //    x.doQuestion();
+        //}
+        list.forEach(Exam::doQuestion);
     }
 }
